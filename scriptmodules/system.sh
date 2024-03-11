@@ -582,7 +582,7 @@ function platform_rpi3() {
 
 function platform_rpi4() {
     cpu_armv8 "cortex-a72"
-    __platform_flags+=(rpi gles gles3 gles31)
+    __platform_flags+=(rpi gles gles3 gles31 vulkan)
 }
 
 function platform_rpi5() {

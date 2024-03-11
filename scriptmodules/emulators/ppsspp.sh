@@ -18,7 +18,7 @@ rp_module_section="opt"
 rp_module_flags=""
 
 function _get_release_ppsspp() {
-    local tagged_version="v1.16.6"
+    local tagged_version="v1.17.1"
     #  the V3D Mesa driver before 21.x has issues with v1.14 and later
     if [[ "$__os_debian_ver" -lt 11 ]] && isPlatform "kms" && isPlatform "rpi"; then
         tagged_version="v1.13.2"
@@ -115,6 +115,8 @@ function build_ffmpeg_ppsspp() {
         ${DEMUXERS} \
         ${MUXERS} \
         ${PARSERS}
+
+    sed -i "s/^#define HAVE_ARC4RANDOM 1/#define HAVE_ARC4RANDOM 0/" config.h
     make clean
     make install
 }
