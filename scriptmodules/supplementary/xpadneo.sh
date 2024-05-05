@@ -30,6 +30,8 @@ function sources_xpadneo() {
     rsync -a --delete "$md_build/hid-xpadneo/" "$md_inst/"
     cp "$md_build/VERSION" "$md_inst/"
     local version="$(_version_xpadneo)"
+    # disable profile switching and report btn_mode normally
+    echo "options hid_xpadneo disable_profile_switch=1" >> "$md_inst/etc-modprobe.d/xpadneo.conf"
     sed "s/@DO_NOT_CHANGE@/$version/g" "$md_inst/dkms.conf.in" > "$md_inst/dkms.conf"
 }
 
