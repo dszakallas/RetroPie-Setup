@@ -285,9 +285,9 @@ function configure_retroarch() {
     # enable overlays by default
     iniSet "input_overlay_enable" "true"
 
-    # disable save paths under sub-folders
-    iniSet "sort_savestates_enable" "false"
-    iniSet "sort_savefiles_enable" "false"
+    # enable save paths under sub-folders
+    iniSet "sort_savestates_enable" "true"
+    iniSet "sort_savefiles_enable" "true"
 
     copyDefaultConfig "$config" "$configdir/all/retroarch.cfg"
     rm "$config"
@@ -324,8 +324,8 @@ function configure_retroarch() {
     _set_config_option_retroarch "input_overlay_enable" "true"
 
     # don't sort save files in sub-folders
-    _set_config_option_retroarch "sort_savefiles_enable" "false"
-    _set_config_option_retroarch "sort_savestates_enable" "false"
+    _set_config_option_retroarch "sort_savefiles_enable" "true"
+    _set_config_option_retroarch "sort_savestates_enable" "true"
 
     # remapping hack for old 8bitdo firmware
     addAutoConf "8bitdo_hack" 0
