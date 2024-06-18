@@ -18,7 +18,7 @@ rp_module_flags="sdl2 !armv6"
 
 function _get_version_gzdoom() {
     # default GZDoom version
-    local gzdoom_version="g4.11.3"
+    local gzdoom_version="g4.12.2"
 
     # 32 bit is no longer supported since g4.8.1
     isPlatform "32bit" && gzdoom_version="g4.8.0"
@@ -41,6 +41,8 @@ function sources_gzdoom() {
     gitPullOrClone zmusic https://github.com/ZDoom/ZMusic
     # workaround for Ubuntu 20.04 older vpx/wepm dev libraries
     sed -i 's/IMPORTED_TARGET libw/IMPORTED_TARGET GLOBAL libw/' CMakeLists.txt
+    # lzma assumes hardware crc support on arm which breaks when building on armv7
+    isPlatform "armv7" && applyPatch "$md_data/lzma_armv7_crc.diff"
 }
 
 function build_gzdoom() {
@@ -72,7 +74,7 @@ function install_gzdoom() {
         'release/game_widescreen_gfx.pk3'
         'release/soundfonts'
         "release/zmusic/lib/libzmusic.so.1"
-        "release/zmusic/lib/libzmusic.so.1.1.12"
+        "release/zmusic/lib/libzmusic.so.1.1.13"
         'README.md'
     )
 }
