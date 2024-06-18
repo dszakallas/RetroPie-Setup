@@ -587,7 +587,7 @@ function platform_rpi4() {
 
 function platform_rpi5() {
     cpu_armv8 "cortex-a76"
-    __platform_flags+=(rpi gles gles3 gles31)
+    __platform_flags+=(rpi gles gles3 gles31 vulkan)
 }
 
 function platform_odroid-c1() {
