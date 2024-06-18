@@ -53,6 +53,10 @@ function build_lr-mupen64plus-next() {
         params+=(FORCE_GLES=1)
     fi
 
+    if isPlatform "rpi5"; then
+        params+=(CPUFLAGS+=-DPAGESIZE=16384)
+    fi
+
     # use a custom core name to avoid core option name clashes with lr-mupen64plus
     params+=(CORE_NAME=mupen64plus-next)
     make "${params[@]}" clean
