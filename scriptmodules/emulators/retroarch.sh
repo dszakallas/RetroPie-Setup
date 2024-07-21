@@ -181,6 +181,14 @@ function configure_retroarch() {
         iniSet "video_threaded" "true"
     fi
 
+    # enable vsync
+    iniSet "video_vsync" "true"
+
+    # use vulkan if available
+    if isPlatform "vulkan" ; then
+        iniSet "video_driver" "vulkan"
+    fi
+
     iniSet "video_font_size" "24"
     iniSet "core_options_path" "$configdir/all/retroarch-core-options.cfg"
     iniSet "global_core_options" "true"
