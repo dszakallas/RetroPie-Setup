@@ -239,8 +239,10 @@ function configure_retroarch() {
     iniSet "all_users_control_menu" "true"
     iniSet "remap_save_on_exit" "false"
 
-    # rgui by default
-    iniSet "menu_driver" "rgui"
+    # ozone by default
+    iniSet "menu_driver" "ozone"
+
+    # rgui settings
     iniSet "rgui_aspect_ratio_lock" "2"
     iniSet "rgui_browser_directory" "$romdir"
     iniSet "rgui_switch_icons" "false"
@@ -300,8 +302,8 @@ function configure_retroarch() {
     copyDefaultConfig "$config" "$configdir/all/retroarch.cfg"
     rm "$config"
 
-    # if no menu_driver is set, force RGUI, as the default has now changed to XMB.
-    _set_config_option_retroarch "menu_driver" "rgui"
+    # if no menu_driver is set, force ozone, as the default has now changed to XMB.
+    _set_config_option_retroarch "menu_driver" "ozone"
 
     # set RGUI aspect ratio to "Integer Scaling" to prevent stretching
     _set_config_option_retroarch "rgui_aspect_ratio_lock" "2"
