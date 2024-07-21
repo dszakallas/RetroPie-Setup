@@ -177,7 +177,7 @@ function configure_retroarch() {
     iniSet "system_directory" "$biosdir"
     iniSet "config_save_on_exit" "false"
     iniSet "video_aspect_ratio_auto" "true"
-    if ! isPlatform "x86"; then
+    if ! isPlatform "x86" || ! isPlatform "rpi4" || ! isPlatform "rpi5" ; then
         iniSet "video_threaded" "true"
     fi
 
@@ -298,6 +298,12 @@ function configure_retroarch() {
     # enable save paths under sub-folders
     iniSet "sort_savestates_enable" "true"
     iniSet "sort_savefiles_enable" "true"
+
+    # Enable game mode on supported platforms.
+    # Depending on the system, it can result in more stable frame times, less audio
+    # crackling, better performance and lower latency. On Linux, Feral GameMode
+    # needs to be installed (https://github.com/FeralInteractive/gamemode).
+    iniSet "gamemode_enable" "true"
 
     copyDefaultConfig "$config" "$configdir/all/retroarch.cfg"
     rm "$config"
