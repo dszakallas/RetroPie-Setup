@@ -512,6 +512,7 @@ function setupDirectories() {
     mkUserDir "$datadir"
     mkUserDir "$romdir"
     mkUserDir "$biosdir"
+    mkUserDir "$savesdir"
     mkUserDir "$configdir"
     mkUserDir "$configdir/all"
 
@@ -1027,6 +1028,10 @@ function defaultRAConfig() {
 
     [[ ! -d "$config_path" ]] && mkUserDir "$config_path"
 
+    local saves_path="$savesdir/$system"
+
+    [[ ! -d "$saves_path" ]] && mkUserDir "$saves_path"
+
     local config="$(mktemp)"
     # add the initial comment regarding include order
     echo -e "# Settings made here will only override settings in the global retroarch.cfg if placed above the #include line\n" >"$config"
@@ -1034,6 +1039,8 @@ function defaultRAConfig() {
     # add the per system default settings
     iniConfig " = " '"' "$config"
     iniSet "input_remapping_directory" "$config_path"
+    iniSet "savefile_directory" "$saves_path"
+    iniSet "savestate_directory" "$saves_path"
 
     # add any additional config key / values from function parameters
     local key

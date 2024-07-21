@@ -48,8 +48,10 @@ home="$(eval echo ~$__user)"
 datadir="$home/RetroPie"
 biosdir="$datadir/BIOS"
 romdir="$datadir/roms"
+savesdir="$datadir/saves"
 emudir="$rootdir/emulators"
 configdir="$rootdir/configs"
+
 
 scriptdir="$(dirname "$0")"
 scriptdir="$(cd "$scriptdir" && pwd)"
